@@ -1,0 +1,49 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<windows.h>
+int main()
+{	
+	char arr[3] = { "abc" };
+	printf("%s\n", arr);\\结果为abc加一串随机乱码
+	char arr2[4] = { "abc" };
+	printf("%s", arr2);\\结果为abc
+	return 0;
+}
+两者对比说明字符串默认后面有\0是在有位置的情况下，限制3个元素，则不会有\0，并且说明sizeof与【】里的数相关（char类型的话[]里的数为几，sizeof（arr）就为几）
+\0不等于0
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<windows.h>
+int main()
+{	
+	char arr[3] = { "abc" };
+	printf("%s\n", arr);
+	char arr2[4] = { "abc" };
+	printf("%s\n", arr2);
+	char arr3[5] = { "abc0" };\\结果为abc0；
+	printf("%s", arr3);
+	return 0;
+}
+
+且\0单独算一个字符，且打印到\0停止
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<windows.h>
+int main()
+{	
+	char arr[3] = { "abc" };
+	printf("%s\n", arr);
+	char arr2[4] = { "abc" };
+	printf("%s\n", arr2);
+	char arr3[5] = { "abc0" };
+	printf("%s\n", arr3);
+	char arr4[5] = { "abc\0d" };
+	printf("%s", arr4);\\结果为abc，到\0停止了，由此证明打印到\0停止
+	return 0;
+}

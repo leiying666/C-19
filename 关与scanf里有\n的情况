@@ -1,0 +1,24 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<windows.h>
+int main()
+{	
+	int a, b;
+	scanf("%d%d\n", &a, &b);
+	printf("%d", a + b);
+	return 0;
+}
+
+结果
+1 3
+任意不为空格的元素+enter
+4
+
+
+原理
+它的原理我应该明白了，就是分输入区和输入缓存区，scanf会先让你把东西输入到输入缓存区，按enter时则开始提取输入缓存区里的元素，则按我的代码应该会提取%d%d＼n这三个元素，空格则省略了，先输入俩数，按enter开始提取，提取完前俩数后遇到enter了，
+默认遇到第一个enter不提取，第一个enter起到了两个作用：1是换行（＼n），2是使scanf开始从输入缓存区开始提取元素。
+scanf提取完发现还有个＼n没提取，根据asc码表，＼n与enter等同，只要再输入任意数再点enter重新提取就行了，就会把第一个enter提走，程序就开始运行了。
+再补充一下，为什么再打第二个enter前要先输任意数，因为enter前没东西的话应该默认只进行换行
